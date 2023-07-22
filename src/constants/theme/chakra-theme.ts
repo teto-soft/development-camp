@@ -27,6 +27,10 @@ export const CHAKRA_THEME = extendTheme(
       overlay: '#7070708f',
     },
     components: { ...chakraComponentStyle },
+    config: {
+      initialColorMode: 'dark',
+      useSystemColorMode: false,
+    },
     fonts: {
       body: `'Noto Sans JP', 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'`,
       heading: `'Noto Sans JP', 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'`,
