@@ -1,14 +1,18 @@
 import { Box } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import { BaseLayout } from '@/components/ui';
 import { useAppStore } from '@/share/store';
 import { useFetchUser } from '@/share/usecase/user';
 
 const TopPage: NextPage = memo(() => {
-  useFetchUser('mock-id');
+  const fetchUser = useFetchUser();
   const user = useAppStore((state) => state.user);
+
+  useEffect(() => {
+    fetchUser('mock-id');
+  },[])
 
   return (
     <BaseLayout

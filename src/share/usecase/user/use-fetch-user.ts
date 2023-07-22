@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { useAppStore } from '@/share/store';
 
 const mockUser = { id: 'mock-id', name: 'モックユーザー' };
 
-export const useFetchUser = (id: string) => {
+export const useFetchUser = () => {
   // const userApi = useUserApi();
   const setUser = useAppStore((state) => state.setUser);
 
-  const fetchUser = async (id: string) => {
+  const fetchUser = useCallback(async (id: string) => {
     // const user = await userApi.findById(id);
 
     const user = mockUser;
@@ -16,9 +16,7 @@ export const useFetchUser = (id: string) => {
     if (user) {
       setUser(user);
     }
-  };
+  },[setUser]);
 
-  useEffect(() => {
-    fetchUser(id);
-  }, [id]);
+  return fetchUser;
 };
