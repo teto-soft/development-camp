@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo, useEffect } from 'react';
 
+import { TodoList } from '@/components/model/todo';
 import { BaseLayout } from '@/components/ui';
 import { useAppStore } from '@/share/store';
 import { useFetchUser } from '@/share/usecase/user';
@@ -12,7 +13,7 @@ const TopPage: NextPage = memo(() => {
 
   useEffect(() => {
     fetchUser('mock-id');
-  },[])
+  }, []);
 
   return (
     <BaseLayout
@@ -21,8 +22,10 @@ const TopPage: NextPage = memo(() => {
       mx="0"
       px="0"
     >
-      ユーザー名：
-      {user?.name}
+      <Box>
+        <Box>ユーザー名：{user?.name}</Box>
+        <TodoList />
+      </Box>
     </BaseLayout>
   );
 });
