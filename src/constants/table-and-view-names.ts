@@ -1,6 +1,6 @@
 type Unpacked<T> = T extends { [K in keyof T]: infer U } ? U : never;
 
-const USER_TABLE_NAME = 'users';
+const USER_TABLE_NAME = 'user';
 const TODO_TABLE_NAME = 'todos';
 
 export const TableNames = {
