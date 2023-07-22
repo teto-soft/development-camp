@@ -15,7 +15,7 @@ export const useChangeCompleteTodos = () => {
         is_completed: !todo.is_completed,
       };
 
-      await api.update([['id', 'eq', req.id]], req);
+      await api.update(req.id, req);
 
       updateTodo(req);
     },

@@ -103,14 +103,27 @@ export const useSupabaseFunction = <QueryType, MutateType = QueryType>(
   );
 
   const update = useCallback(
-    async (filters: FindFilter[], model: Partial<MutateType>, select = '*') => {
-      const query = supabase.from(from).update(model);
+    async (
+      primary: number | string | object,
+      model: Partial<MutateType>,
+      select = '*',
+    ) => {
+      const query =
+        typeof primary === 'object'
+          ? supabase
+              .from(from)
+              .update(model)
+              .match({ ...primary })
+              .select(select)
+              .single()
+          : supabase
+              .from(from)
+              .update(model)
+              .filter('id', 'eq', primary)
+              .select(select)
+              .single();
 
-      filters.forEach(([column, op, value]) => {
-        query.filter(column, op, value);
-      });
-
-      const res = await query.select(select).single();
+      const res = await query;
 
       if (res.error) {
         throw res.error;
@@ -122,12 +135,27 @@ export const useSupabaseFunction = <QueryType, MutateType = QueryType>(
   );
 
   const upsert = useCallback(
-    async (model: Partial<MutateType>, select = '*') => {
-      const res = await supabase
-        .from(from)
-        .upsert(model)
-        .select(select)
-        .single();
+    async (
+      primary: number | string | object,
+      model: Partial<MutateType>,
+      select = '*',
+    ) => {
+      const query =
+        typeof primary === 'object'
+          ? supabase
+              .from(from)
+              .upsert(model)
+              .match({ ...primary })
+              .select(select)
+              .single()
+          : supabase
+              .from(from)
+              .upsert(model)
+              .filter('id', 'eq', primary)
+              .select(select)
+              .single();
+
+      const res = await query;
 
       if (res.error) {
         throw res.error;
