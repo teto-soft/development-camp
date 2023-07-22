@@ -1,16 +1,22 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from 'react';
 
-import { useTodoStore } from "@/share/store";
-import { useFetchTodos } from "@/share/usecase/todos";
-
+import { useTodoStore } from '@/share/store';
+import { Todo } from '@/share/types';
+import { useChangeCompleteTodos, useFetchTodos } from '@/share/usecase/todos';
 
 export const useTodoList = () => {
   const todos = useTodoStore((store) => store.todos);
+
   const fetchTodos = useFetchTodos();
+  const changeCompleteTodo = useChangeCompleteTodos();
+
+  const handleChangeComplete = useCallback(async (todo: Todo) => {
+    await changeCompleteTodo(todo);
+  }, []);
 
   useEffect(() => {
     fetchTodos();
   }, [fetchTodos]);
 
-  return {todos};
-}
+  return { handleChangeComplete, todos };
+};

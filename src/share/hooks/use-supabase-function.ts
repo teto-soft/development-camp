@@ -103,12 +103,14 @@ export const useSupabaseFunction = <QueryType, MutateType = QueryType>(
   );
 
   const update = useCallback(
-    async (model: Partial<MutateType>, select = '*') => {
-      const res = await supabase
-        .from(from)
-        .update(model)
-        .select(select)
-        .single();
+    async (filters: FindFilter[], model: Partial<MutateType>, select = '*') => {
+      const query = supabase.from(from).update(model);
+
+      filters.forEach(([column, op, value]) => {
+        query.filter(column, op, value);
+      });
+
+      const res = await query.select(select).single();
 
       if (res.error) {
         throw res.error;
