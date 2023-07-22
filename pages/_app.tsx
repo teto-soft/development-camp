@@ -5,26 +5,23 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
-import { useState } from 'react';
 import { CHAKRA_THEME } from 'src/constants';
 
-const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const [supabase] = useState(() =>
-    createClientComponentClient({
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    }),
-  );
+export const supabase = createClientComponentClient({
+  supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+});
 
+const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <SessionContextProvider
       initialSession={pageProps.initialSession}
       supabaseClient={supabase}
     >
-    <ChakraProvider theme={CHAKRA_THEME}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-  </SessionContextProvider>
+      <ChakraProvider theme={CHAKRA_THEME}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </SessionContextProvider>
   );
 };
 
