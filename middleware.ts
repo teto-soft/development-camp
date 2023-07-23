@@ -7,16 +7,6 @@ import { TableNames } from '@/constants/table-and-view-names';
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  const path = req.nextUrl.pathname;
-  const excludeFiles = ['.js', '.css', '.png', '.jpg', '.svg', '.woff2'];
-  const excludePaths = ['/login', '/register'];
-  if (
-    excludeFiles.some((x) => path.includes(x)) ||
-    excludePaths.some((x) => path.includes(x))
-  ) {
-    return NextResponse.next();
-  }
-
   const supabase = createMiddlewareClient({ req, res });
   const session = await supabase.auth.getSession();
 
@@ -31,7 +21,7 @@ export async function middleware(req: NextRequest) {
   }
 }
 
-// // See "Matching Paths" below to learn more
-// export const config = {
-//   matcher: '/',
-// };
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: '/',
+};
