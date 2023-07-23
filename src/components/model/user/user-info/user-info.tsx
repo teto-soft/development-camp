@@ -10,7 +10,7 @@ interface UserInfoProps {
 export default function UserInfo({ avatarSrc, name }: UserInfoProps) {
   return (
     <Flex alignItems="center" mb="4">
-      <Avatar mr="4" name={name} src={avatarSrc} />
+      <Avatar mr="4" src={avatarSrc} />
       <Text>{name}</Text>
       <SettingsIcon ml="10px" />
     </Flex>

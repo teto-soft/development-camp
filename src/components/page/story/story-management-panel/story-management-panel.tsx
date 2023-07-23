@@ -3,10 +3,11 @@ import React from 'react';
 
 import AddStoryButton from '@/components/model/story/add-story/add-story';
 import StoryLink from '@/components/model/story/story-link/story-link';
-import { Sentence } from '@/share/types/model/sentence.model';
+import UserInfo from '@/components/model/user/user-info/user-info';
+import { User } from '@/share/types';
 
 interface StoryManagementPanelProps {
-  sentences: Sentence[];
+  user: User | null;
 }
 
 const items = [
@@ -15,7 +16,7 @@ const items = [
 ];
 
 export default function StoryManagementPanel({
-  sentences,
+  user,
 }: StoryManagementPanelProps) {
   return (
     <Flex
@@ -24,6 +25,7 @@ export default function StoryManagementPanel({
       flexDirection="column"
       h="100%"
       justifyContent="space-between"
+      minW="lg"
       width="lg"
     >
       <Box mt="4" textAlign="center">
@@ -34,7 +36,10 @@ export default function StoryManagementPanel({
           })}
         </Flex>
       </Box>
-      {/*<UserInfo avatarSrc={sentences[0].id} name={sentences[0].user_id} />*/}
+      <UserInfo
+        avatarSrc="https://avatars.dicebear.com/api/avataaars/1.svg"
+        name={user?.name ?? ''}
+      />
     </Flex>
   );
 }
