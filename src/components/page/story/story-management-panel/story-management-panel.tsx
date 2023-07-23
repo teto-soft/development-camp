@@ -25,8 +25,7 @@ export default function StoryManagementPanel({
       flexDirection="column"
       h="100%"
       justifyContent="space-between"
-      minW="lg"
-      width="lg"
+      minW="64"
     >
       <Box mt="4" textAlign="center">
         <AddStoryButton />

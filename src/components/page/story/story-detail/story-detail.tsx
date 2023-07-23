@@ -23,11 +23,10 @@ export default function StoryDetail({ sentences }: StoryDetailProps) {
       justifyContent="space-between"
       m="4"
       position="relative"
-      w="100%"
     >
       <Flex direction="column" overflowX="auto">
-        {sentences.map((sentence, index) => (
-          <Flex color="whiteAlpha.700" key={index} my="2" p="3" w="100%">
+        {sentences.map((sentence) => (
+          <Flex color="whiteAlpha.700" key={sentence.id} my="2" p="3">
             <Avatar
               mr="8"
               src="https://avatars.dicebear.com/api/avataaars/1.svg"
@@ -35,7 +34,7 @@ export default function StoryDetail({ sentences }: StoryDetailProps) {
             <Text>{sentence.body}</Text>
           </Flex>
         ))}
-        <AlwaysScrollToBottom />
+        {/*<AlwaysScrollToBottom />*/}
       </Flex>
       <SentenceInput />
       <Box h="12" />
