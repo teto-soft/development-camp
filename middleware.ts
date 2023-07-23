@@ -8,22 +8,15 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
   const path = req.nextUrl.pathname;
-  // ページへのリクエストのみを処理する
+  const excludeFiles = ['.js', '.css', '.png', '.jpg', '.svg', '.woff2'];
+  const excludePaths = ['/login', '/register'];
   if (
-    path.includes('.js') ||
-    path.includes('.css') ||
-    path.includes('.png') ||
-    path.includes('.jpg') ||
-    path.includes('.svg') ||
-    path.includes('.woff2')
+    excludeFiles.some((x) => path.includes(x)) ||
+    excludePaths.some((x) => path.includes(x))
   ) {
-    // 静的ファイルへのリクエストは無視
     return NextResponse.next();
   }
 
-  if (req.nextUrl.pathname === '/register') {
-    return NextResponse.next();
-  }
   const supabase = createMiddlewareClient({ req, res });
   const session = await supabase.auth.getSession();
 
