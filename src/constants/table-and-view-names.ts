@@ -3,7 +3,7 @@ type Unpacked<T> = T extends { [K in keyof T]: infer U } ? U : never;
 const USER_TABLE_NAME = 'user';
 const TODO_TABLE_NAME = 'todos';
 const SENTENCE_TABLE_NAME = 'sentences';
-const STORY_TABLE_NAME = 'stories';
+const STORY_TABLE_NAME = 'story';
 
 export const TableNames = {
   sentence: SENTENCE_TABLE_NAME,
