@@ -1,3 +1,4 @@
+import { AddIcon, ChatIcon, SettingsIcon } from '@chakra-ui/icons';
 import { Avatar, Box, Button, Flex, HStack, Text } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { memo, useEffect, useRef, useState } from 'react';
@@ -12,6 +13,11 @@ export interface Sentence {
   src: string;
   text: string;
 }
+
+const items = [
+  { id: 1, name: 'test1' },
+  { id: 2, name: 'test2' },
+];
 
 const StoryPage: NextPage = memo(() => {
   const fetchUser = useFetchUser();
@@ -67,12 +73,38 @@ const StoryPage: NextPage = memo(() => {
   }, []);
 
   return (
-    <BaseLayout mx="0" px="0">
-      <HStack height={'100vh'} spacing="4">
-        <Box bgColor={'lightgray'} height={'100%'} width={64}>
-          <Button colorScheme="teal">New Story</Button>
-          <Box>ユーザー名：{user?.name}</Box>
-        </Box>
+    <BaseLayout mx="0" overflowX="hidden" px="0">
+      <HStack h="100vh" overflowX="hidden" spacing="12">
+        <Flex
+          alignItems="center"
+          bgColor="gray"
+          flexDirection="column"
+          h="100%"
+          justifyContent="space-between"
+          width="lg"
+        >
+          <Box mt="10px" textAlign="center">
+            <Button colorScheme="teal" mb="30px">
+              <AddIcon mr="10px"></AddIcon>
+              New Story
+            </Button>
+            <Flex alignItems="center" flexDirection="column">
+              {items.map((item, index) => {
+                return (
+                  <Button _hover={{ bg: 'white' }} key={index} w="190px">
+                    <ChatIcon mr="2" />
+                    <Text>{item.name}</Text>
+                  </Button>
+                );
+              })}
+            </Flex>
+          </Box>
+          <Button _hover={{ bg: 'white' }} mb="8">
+            <Avatar mr="4" name={sentences[0].name} src={sentences[0].src} />
+            <Text>{user?.name}</Text>
+            <SettingsIcon ml="10px" />
+          </Button>
+        </Flex>
         <Flex
           direction="column"
           h="100%"
@@ -97,7 +129,7 @@ const StoryPage: NextPage = memo(() => {
           >
             {sentences.map((sentence, index) => (
               <Flex color="whiteAlpha.700" key={index} my="2" p="3" w="100%">
-                <Avatar mr={8} name={sentence.name} src={sentence.src} />
+                <Avatar mr="8" name={sentence.name} src={sentence.src} />
                 <Text>{sentence.text}</Text>
               </Flex>
             ))}
