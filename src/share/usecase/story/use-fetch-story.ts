@@ -10,6 +10,7 @@ export const useFetchStories = () => {
   const fetchStories = useCallback(async () => {
     const stories = await api.find({
       filters: [],
+      limit: 20,
       orders: [['created_at', false]],
     });
 

@@ -41,9 +41,9 @@ export default function StoryManagementPanel({
       justifyContent="space-between"
       width="lg"
     >
-      <Box mt="4" textAlign="center">
+      <Box mt="4" position="sticky" textAlign="center" top="0" w="100%">
         <AddStoryButton />
-        <Flex alignItems="center" flexDirection="column">
+        <Flex alignItems="center" flexDirection="column" overflowY="scroll">
           {stories.map((item, index) => {
             return <StoryLink key={index} name={item.title} />;
           })}
