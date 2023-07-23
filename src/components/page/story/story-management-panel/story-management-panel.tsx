@@ -4,12 +4,13 @@ import React, { useEffect } from 'react';
 import AddStoryButton from '@/components/model/story/add-story/add-story';
 import StoryLink from '@/components/model/story/story-link/story-link';
 import UserInfo from '@/components/model/user/user-info/user-info';
+import { User } from '@/share/types';
 import { Sentence } from '@/components/page/story/story.page';
 import { useStoryStore } from '@/share/store/story-store/story.store';
 import { useFetchStories } from '@/share/usecase/story/use-fetch-story';
 
 interface StoryManagementPanelProps {
-  sentences: Sentence[];
+  user: User | null;
 }
 
 const items = [
@@ -29,7 +30,7 @@ export const fetchStories = () => {
 };
 
 export default function StoryManagementPanel({
-  sentences,
+  user,
 }: StoryManagementPanelProps) {
   const { stories } = fetchStories();
   return (
@@ -39,7 +40,7 @@ export default function StoryManagementPanel({
       flexDirection="column"
       h="100%"
       justifyContent="space-between"
-      width="lg"
+      minW="64"
     >
       <Box mt="4" position="sticky" textAlign="center" top="0" w="100%">
         <AddStoryButton />
@@ -49,7 +50,10 @@ export default function StoryManagementPanel({
           })}
         </Flex>
       </Box>
-      <UserInfo avatarSrc={sentences[0].src} name={sentences[0].name} />
+      <UserInfo
+        avatarSrc="https://avatars.dicebear.com/api/avataaars/1.svg"
+        name={user?.name ?? ''}
+      />
     </Flex>
   );
 }

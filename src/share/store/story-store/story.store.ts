@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { Story } from '@/share/types';
+import { Story } from '@/share/types/model/story.model';
 
 export type StoryStoreType = {
   resetStory: () => void;
