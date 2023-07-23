@@ -1,13 +1,24 @@
 import { Button, Flex, Textarea } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
+import { useRegisterSentence } from '@/share/usecase/sentences/use-register-sentence';
+
 function SentenceTextarea() {
   const [body, setBody] = useState('');
 
-  const handleSendBody = () => {
+  const registerSentence = useRegisterSentence();
+
+  const handleSendBody = async () => {
     if (!body.trim().length) {
       return;
     }
+
+    await registerSentence({
+      body,
+      story_id: 1,
+      user_id: 1,
+    });
+
     setBody('');
   };
 
