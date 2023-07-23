@@ -32,7 +32,7 @@ const StoryPage: NextPage = memo(() => {
   }, []);
 
   return (
-    <BaseLayout mx="0" overflowX="hidden" px="0">
+    <BaseLayout maxW="unset" mx="0" overflowX="hidden" px="0">
       <HStack h="100vh" overflowX="hidden" spacing="12">
         <StoryManagementPanel user={user} />
         <StoryDetail sentences={sentences} />

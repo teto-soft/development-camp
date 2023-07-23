@@ -1,7 +1,7 @@
 import { Avatar, Box, Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
 
-import SentenceInput from '@/components/model/story/sentence-input/sentence-input';
+import SentenceTextarea from '@/components/model/story/sentence-textarea/sentence-textarea';
 import { Sentence } from '@/share/types/model/sentence.model';
 
 interface StoryDetailProps {
@@ -22,22 +22,23 @@ export default function StoryDetail({ sentences }: StoryDetailProps) {
       h="100%"
       justifyContent="space-between"
       m="4"
-      position="relative"
+      w="70vw"
     >
       <Flex direction="column" overflowX="auto">
         {sentences.map((sentence) => (
-          <Flex color="whiteAlpha.700" key={sentence.id} my="2" p="3">
+          <Flex key={sentence.id} my="2" p="3">
             <Avatar
               mr="8"
               src="https://avatars.dicebear.com/api/avataaars/1.svg"
             />
-            <Text>{sentence.body}</Text>
+            <Text color="whiteAlpha.700">{sentence.body}</Text>
           </Flex>
         ))}
         <AlwaysScrollToBottom />
       </Flex>
-      <SentenceInput />
-      <Box h="12" />
+      <Box mb="12">
+        <SentenceTextarea />
+      </Box>
     </Flex>
   );
 }
