@@ -8,7 +8,7 @@ const Login = () => {
 
   supabase.auth.onAuthStateChange((event, session) => {
     if (session?.user) {
-      router.push('/');
+      router.push('/story');
     }
   });
 

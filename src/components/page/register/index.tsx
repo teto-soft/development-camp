@@ -18,7 +18,7 @@ const RegisterPage = () => {
         email: data?.user?.email,
         name: name,
       });
-      router.push('/');
+      router.push('/story');
     } catch (error) {
       alert(`登録に失敗しました。`);
       console.error(error);
