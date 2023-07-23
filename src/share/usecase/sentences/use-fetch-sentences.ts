@@ -14,8 +14,6 @@ export const useFetchSentences = () => {
       orders: [['created_at', false]],
     });
 
-    console.log(sentences);
-
     if (sentences) {
       setSentences(sentences);
     }
