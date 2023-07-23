@@ -3,8 +3,7 @@ import React from 'react';
 
 import AddStoryButton from '@/components/model/story/add-story/add-story';
 import StoryLink from '@/components/model/story/story-link/story-link';
-import UserInfo from '@/components/model/user/user-info/user-info';
-import { Sentence } from '@/components/page/story/story.page';
+import { Sentence } from '@/share/types/model/sentence.model';
 
 interface StoryManagementPanelProps {
   sentences: Sentence[];
@@ -35,7 +34,7 @@ export default function StoryManagementPanel({
           })}
         </Flex>
       </Box>
-      <UserInfo avatarSrc={sentences[0].src} name={sentences[0].name} />
+      {/*<UserInfo avatarSrc={sentences[0].id} name={sentences[0].user_id} />*/}
     </Flex>
   );
 }

@@ -80,6 +80,8 @@ export const useSupabaseFunction = <QueryType, MutateType = QueryType>(
         throw res.error;
       }
 
+      console.log(res);
+
       return res.data as QueryType[];
     },
     [supabase, from],
