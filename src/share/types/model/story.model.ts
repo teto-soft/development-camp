@@ -1,6 +1,6 @@
 export type Story = {
   created_at: string;
-  id: string;
+  id: number;
   is_completed: boolean;
   title: string;
 };

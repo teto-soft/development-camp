@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import { memo, useEffect } from 'react';
 
 import { TodoList } from '@/components/model/todo';
+import Logout from '@/components/page/top/components/logout';
 import { BaseLayout } from '@/components/ui';
 import { useAppStore } from '@/share/store';
 import { useFetchUser } from '@/share/usecase/user';
@@ -26,6 +27,7 @@ const TopPage: NextPage = memo(() => {
         <Box>ユーザー名：{user?.name}</Box>
         <TodoList />
       </Box>
+      <Logout></Logout>
     </BaseLayout>
   );
 });
