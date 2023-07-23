@@ -9,6 +9,7 @@ const LoginPage = () => (
       appearance={{ theme: ThemeSupa }}
       providers={[]}
       supabaseClient={supabase}
+      theme="dark"
     />
   </Box>
 );
