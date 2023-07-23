@@ -7,7 +7,7 @@ const LoginPage = () => (
   <Box mx="35%" pt="10%">
     <Auth
       appearance={{ theme: ThemeSupa }}
-      providers={['google', 'twitter']}
+      providers={[]}
       supabaseClient={supabase}
     />
   </Box>

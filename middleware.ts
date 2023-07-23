@@ -8,9 +8,15 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
   const supabase = createMiddlewareClient({ req, res });
-  const session = await supabase.auth.getSession();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  const email = session?.data?.session?.user?.email;
+  if (!session) {
+    return NextResponse.redirect(`${req.nextUrl.origin}/login`);
+  }
+
+  const email = session?.user?.email;
   const { data } = await supabase
     .from(TableNames.user)
     .select()
@@ -23,5 +29,5 @@ export async function middleware(req: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/',
+  matcher: ['/', '/register'],
 };
