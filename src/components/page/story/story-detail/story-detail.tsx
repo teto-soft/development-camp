@@ -34,7 +34,7 @@ export default function StoryDetail({ sentences }: StoryDetailProps) {
             <Text>{sentence.body}</Text>
           </Flex>
         ))}
-        {/*<AlwaysScrollToBottom />*/}
+        <AlwaysScrollToBottom />
       </Flex>
       <SentenceInput />
       <Box h="12" />
